@@ -1,0 +1,1839 @@
+html {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  margin: 0;
+  text-align: center;
+  padding: 0;
+  font: normal 12px/1.5em "Lucida Grande", Lucida, Helvetica, sans-serif;
+  background: #99D3D5;
+  color: #333;
+  min-width: 900px;
+}
+
+ul, li, form, dt, dl, dd, ol, div, p, 
+blockquote, h1, h2, h3, h4, h5, h6, a {
+  margin: 0;
+  padding: 0;
+}
+
+#header {
+  background: #211 url(/images/mephisto/hdr-bg.gif) bottom left repeat-x;
+  height: 142px;
+  margin: 0;
+  text-align: left;
+  padding-top: 1px;
+}
+
+#search {
+  position: absolute;
+  right: 10px;
+  top: 115px;
+}
+
+#container {
+  margin: 0 auto;
+  text-align: left;
+  min-width: 778px;
+}
+
+a:link, a:visited { outline: none; color: #920; border-bottom: 1px dotted #ccc; text-decoration: none; }
+
+a:hover {
+  color: #d30;
+  background-color: #f7f7f7;
+}
+
+.disabled {
+  text-decoration: line-through;
+  color:#555;
+}
+
+.disabled a {
+  display:none;
+}
+
+#main {
+  margin: -16px 0 0 0;
+  float: left;
+  width: 68%;
+  background: #fff;
+  border-right: 3px solid #8acacc;
+  border-bottom: 3px solid #8acacc;
+  position: relative;
+}
+
+#sbar {
+  margin: 0 10px 0 69%;
+  color: #033;
+}
+
+#sbar:after {
+  content: ".";
+  height: 1px;
+  visibility: hidden;
+  clear: left;
+  display: block;
+}
+
+#footer {
+  bottom: 0;
+  clear: left;
+  margin: 0 0;
+  padding: 4px;
+  min-height: 40px;
+  font-size: 90%;
+  text-align: center;
+  width: 68%;
+  color: #366;
+}
+
+
+/*
+ *=UTILS
+ */
+
+img { border: 0;}
+.tspace { margin-top: 20px;}
+.empty {
+  padding: 10px;
+  padding-left: 40px;
+  background: #eee url(/images/mephisto/icons/minusb.gif) 10px 50% no-repeat; 
+}
+.highlight {
+  border-bottom: 3px double #ccc;
+  font-style: normal;
+}
+
+blockquote p {
+  margin: 0 !important;
+  padding: 0 !important;
+  font: italic 110% "Times New Roman", serif;
+}
+
+.clear:after {
+    content: "."; 
+    display: block; 
+    height: 0; 
+    clear: both; 
+    visibility: hidden;
+}
+
+.clear {display: inline-table;}
+
+/* Hides from IE-mac \*/
+* html .clear {height: 1%;}
+.clear {display: block;}
+/* End hide from IE-mac */
+
+/*
+ *=FORMS
+ */
+
+form dl {
+  margin: 0 10px;
+}
+
+dt label, .sform label {
+  font-weight: bold;
+  text-shadow: #fff 2px 2px;
+  margin: 0;
+  padding: 0;
+}
+
+dt {
+  margin-top: 15px;
+}
+
+dd {
+  line-height: normal;
+  padding: 1px;
+}
+
+input[type='text'], input[type='password'], 
+input[type='checkbox'], select, textarea {
+  border: 1px solid #ddd;
+  border-top: 1px solid #aaa;
+  border-left: 1px solid #aaa;
+  font-family: "Lucida Grande", Lucida, Helvetica, sans-serif;
+  font-size: 100%;
+  padding: 2px;
+}
+
+input[type='text']:focus, textarea:focus {
+  background: #fff;
+  color: #000;  
+}
+
+.btn-asset {
+  border-top: 1px solid #FFEB9E;
+  margin-top: 5px;
+  padding: 3px;
+  text-align: right;
+  background: #F0C000;
+}
+
+.btns {
+  padding: 10px !important;
+  margin: 20px 0;
+  background: #dee;
+  border-top: 1px solid #99D3D5;
+}
+
+.big { font-size: 180% !important; }
+.lil { font-size: 80%; }
+.fat { width: 100%;}
+
+.tiny { width: 30px; }
+
+
+/*
+ *=HEADER
+ */
+
+
+#header h1 a {
+  color: #fff;
+  text-decoration: none;
+  text-indent: -9999px;
+  background: url(/images/mephisto/logo.png) no-repeat;
+  width: 111px;
+  height: 39px;
+  display: block;
+  border: none;
+}
+
+#header h1 {
+  line-height: normal;
+  padding: 30px 0 0 30px;
+}
+
+#nav {
+  margin-left: 130px;
+}
+
+#nav ul {
+  margin: 13px 0 0 38px;
+  padding: 0;
+  list-style:none;
+  font-size: 80%;
+  line-height: 100%;
+}
+
+#nav li {
+  float:left;
+  background: #997;
+  margin: 0 10px 0 0;
+
+}
+
+#nav a {
+  float:left;
+  display:block;
+  background: #997 url(/images/mephisto/tab-bg.gif) repeat-x left top;
+  padding: 9px 20px;
+  text-decoration: none;
+  border: none;
+  font-weight: bold;
+  color: #fff;
+  text-shadow: #333 2px 2px;
+  border-left: 1px solid #bcb89f;
+  border-right: 1px solid #bcb89f;
+  outline: none;
+}
+
+#nav a:hover {
+  color: #000;
+  text-shadow: none;
+}
+
+/* Commented Backslash Hack
+   hides rule from IE5-Mac \*/
+#nav a {float:none;}
+/* End IE5-Mac hack */
+
+#nav #current {
+}
+
+#nav #current a {
+  color: #fff;
+  padding-bottom:5px;
+}
+
+
+#nav-r {
+  position: absolute;
+  top: 70px;
+  right: 40px;
+}
+
+
+/*
+ *=OTHER NAVIGATION
+ */
+
+/* Top right in header */
+#sec-nav {
+  list-style: none;
+  float: right;
+  margin-right: 10px;
+  margin-top: 5px;
+  font-size: 90%;
+}
+
+#sec-nav li, #act-nav li {
+  display: inline;
+  margin-right: 5px;
+}
+
+#sec-nav li a {
+  color: #ccc;
+  border: none;
+}
+
+#sec-nav li a:hover {
+  color: #fff;
+  background-color: transparent;
+}
+
+/* Page level (top of page)  */
+#page-nav {
+  background: url(/images/mephisto/actnav-bg.gif) repeat-x;
+  margin: 0 0 20px 0;
+  color: #fff;
+  border-top: 1px solid #6fb4b6;
+  border-bottom: 1px solid #6fb4b6;
+  min-height: 40px;
+}
+
+#act-nav {
+  list-style: none;
+  margin: 0 0 0 20px;
+  border-left: 1px solid #98CED0;
+  position: relative;
+} 
+
+#act-nav li a {
+  color: #005d60;
+  padding: 11px 8px;
+  border: 0;
+  border-right: 1px solid #98CED0;
+  border-left: 1px solid #fff;
+  display: block;
+  float: left;
+}
+
+#act-nav li a:hover {
+  color: #000;
+  text-shadow: 2px 2px #fff;
+  background-color: transparent;
+}
+
+#select {
+  position: absolute;
+  right: 0;
+  top: 0;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+#select a#cog {
+  border-right: none;
+  border-left: 1px solid #98CED0;
+  display: block;
+  background: url(/images/mephisto/cog.gif) no-repeat;
+  padding: 11px 18px;
+  outline: none;
+  margin: 0 !important;
+}
+
+.down {
+  background: #ccc url(/images/mephisto/cog-down.gif) no-repeat !important;
+  border-left: 1px solid #5aa !important;
+}
+
+#select #optgroup {
+  position: absolute;
+  top: 41px;
+  left: 4px;
+  width: 240px;
+  z-index: 9999;
+  padding: 0 5px 5px 0;
+  margin: 0;
+  background: url(/images/mephisto/shadow.png) bottom right no-repeat;
+}
+
+#select #options {
+  background: #eee;
+  border: 5px solid #fff;
+}
+
+#select #options li {
+  display: block;
+  margin: 0;
+  padding: 5px 5px 5px 10px;
+  border-bottom: 2px solid #fff;
+  color: #333;
+}
+
+#select #options:last-child {
+  border-bottom: 3px solid #fff;
+}
+
+#select #options li:hover {
+  background-color: #ddd;
+}
+
+#select #options a {
+  float: none !important;
+  margin: 0;
+  border: none;
+  display: inline;
+  padding: 0;
+}
+
+#options .endgroup {
+  border-bottom: 2px solid #999 !important;
+}
+
+/*
+ *=MAIN
+ */
+
+#flashes {
+  background: #fff9d0;
+  min-height: 38px;
+  text-align: center;
+  font-weight: bold;
+}
+
+#main-content {
+  padding: 0 20px;
+}
+
+#shadow {
+  position: absolute;
+  right: -3px;
+  top: 0;
+  width: 3px;
+  height: 17px;
+  background: url(/images/mephisto/corner-shadow.gif) no-repeat;
+}
+
+#main h2 {
+  font-size: 150%;
+  padding: 0 0 0 5px;
+  margin: 25px 0 0 0;
+  border-bottom: 1px dotted #ccc;
+}
+
+#main h3 {
+  font-size: 100%;
+  color: #033;
+}
+
+#main p {
+  padding: 0 5px 5px 5px;
+}
+
+
+/*
+ *=SIDEBAR
+ */
+
+#sbar {
+  padding-top: 20px;
+  color: #033;
+  position: relative;
+}
+
+#sbar a:hover {
+  background-color: #000;
+  color: #fff;
+}
+
+#sbar dl {
+ margin: 0 10px;
+ padding: 10px;
+}
+
+#sbar dd {
+ border: 0;
+ display: inline;
+}
+
+#sbar h3 {
+  padding: 2px 5px;
+  color: #033;
+  font-size: 100%;
+  font-family: Helvetica, "Lucida Grande", sans-serif;
+  border-bottom: 1px dotted #6ab;
+  margin-bottom: 5px;
+}
+
+#sbar .hint {
+  color: #000;
+  margin-top: 4px;
+}
+
+#revisions, #resources, 
+#attachments, #sections, 
+#pages, .dotlist {
+  list-style: none;
+  margin: 0 20px 0 5px;
+}
+
+#revisions li, #resources li {
+  padding: 5px;
+  font-style: italic;
+  vertical-align: top;
+  display: block;
+  margin-bottom: 1px;
+}
+
+#revisions li {
+  position: relative;
+  border-bottom: 1px dotted #C6F4F6;
+  min-height: 30px;
+}
+
+#revisions li input[type=checkbox] {
+  position: absolute;
+  top: 50%;
+  left: 0;
+}
+
+#revisions li .avatar {
+  max-width: 25px;
+  max-height: 25px;
+}
+
+#revisions li a, #resources li a { border: none; text-decoration: none;}
+
+#resources li a {
+  background: url(/images/mephisto/icons/document.gif) 0 50% no-repeat;
+  text-decoration: underline;
+  display: block;
+  padding: 3px 0 3px 20px;
+  font-style: normal;
+  border-bottom: 1px dotted #C6F4F6;
+}
+
+#attachments li a, #sections li a, #pages li a {
+  border: 0;
+  text-decoration: underline;
+}
+
+
+#attachments li, #sections li, 
+#pages li, .dotlist li {
+  display: block;
+  list-style: none;
+  padding: 5px 8px;
+  margin: 0;
+  border-bottom: 1px dotted #C6F4F6;
+}
+
+#attachments li img, #sections li img, 
+#pages li img, .dotlist li img {
+  border: 0;
+}
+
+#attachments li a.aicon, #sections li a.aicon, 
+#pages li a.aicon, .dotlist li a.aicon {
+  margin-right: 10px;
+}
+
+ul .handle {
+  width:16px;
+  line-height:16px;
+  margin:2px 14px 2px 0;
+  display:block;
+  float:left;
+  background-image: url(/images/mephisto/icons/arrow3_e.gif);
+}
+
+.sortable .handle {
+  background-image: url(/images/mephisto/icons/reorder.gif);
+}
+
+#sections .handle { display:none; }
+#sections.sortable .handle { display:block; }
+#sections.sortable .trash  { display:none; }
+
+a#section-home {
+  margin-left: 29px;
+}
+
+#sbar p, #sbar p.hint {
+  padding: 0 5px;
+}
+
+#sbar .box {
+  margin: 10px 0;
+  border: 1px solid #6aa;
+  background: #bee;
+}
+
+.sbar-group * {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.sbar-form {
+  width: auto;
+  text-shadow: none;
+  margin: 0 !important;
+  padding: 5px !important;
+}
+
+.sbar-group label { text-shadow: none;}
+
+.sbar-group input {
+  width: 200px;
+}
+
+#sbar input.filter[type=submit] {
+  margin:0 0 0 5px !important;
+  width:75px;
+}
+
+#sbar input[type=file], #sbar input[type=submit] {
+  width: 100px;
+  margin: 5px 0 !important;
+  
+}
+
+#sbar .avatar {
+  border: 1px solid #7bb;
+  background: #fff;
+  padding: 2px;
+  float: left;
+  margin: 0 5px 0 0;
+  max-height: 40px;
+  max-width: 40px;
+  overflow: hidden;
+}
+
+#revisions h4, #assets h4, #latest-assets h4, #bucket-assets h4 {
+  font: bold 100% "Lucida Grande", Helvetica, Arial, Verdana, sans-serif;
+  color: #333;
+}
+
+#sbar .sgroup {
+  margin: 0 10px 20px 10px;
+}
+
+#sbar p.funct {
+  margin: 12px 0 0 0;
+  padding: 0;
+  font-style: normal;
+  color: #777;
+}
+
+#sbar p.funct a:hover, .sgroup a:hover {
+  color: #fff;
+  background: #000;
+}
+
+.rev-num {
+  position: absolute;
+  top: 10px;
+  right: 5px;
+  font-size: 240%;
+  color: #488;
+  font-family: Georgia, "Times New Roman", sans-serif;
+}
+
+.slist {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.slist li {
+  padding: 2px 10px;
+}
+
+.slist a { border: 0; }
+
+.stabs {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.stabs li {
+  display: inline;
+}
+
+.stabs li a {
+  padding: 5px;
+  padding-bottom: 3px;
+  border: 1px solid #6aa;
+  border-bottom: 0;
+  background-color: #9BDDDD !important;
+  color: #000;
+  margin-right: 3px;
+  outline: none;
+  font-size: 90%;
+  padding-left: 18px;
+}
+
+.stabs li a.selected {
+  background-color: #bee !important;
+  padding-bottom: 4px;
+}
+
+ul.stabs li a:hover {
+  background-color: #BEE6E6 !important;
+  color: #000 !important;
+}
+
+.tabpanel {
+  border: 1px solid #6aa;
+  padding:; 0 5px 5px 5px;
+  background: #bee;
+  padding: 5px;
+}
+
+#tab-search a { background: url(/images/mephisto/icons/magnify.png) 3px 50% no-repeat; }
+#tab-files a  { background: url(/images/mephisto/icons/updark.png) 3px 5px no-repeat; }
+#tab-latest a { background: url(/images/mephisto/icons/thumbs.png) 3px 5px no-repeat; }
+#tab-bucket a { background: url(/images/mephisto/icons/bucket.png) 3px 5px no-repeat; }
+
+.reordering  {
+  background: green;
+  color: #fff !important;
+}
+
+/*
+ *=SBAR FORMS
+ */
+
+.sform {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.sform input[type !='submit'] {
+  border: 1px solid #333;
+  border-top: 1px solid #aaa;
+  border-left: 1px solid #aaa;
+}
+
+.sform li {
+  margin-bottom: 5px;
+}
+
+.sform label {
+  text-shadow: none;
+  font-size: 90%;
+  margin: 0;
+  color: #044;
+}
+
+dl.sform {
+  margin: 0 !important;
+  padding: 0 0 0 5px !important;
+}
+
+.sform dt {
+  margin: 0 0 2px 0 !important;
+  padding: 5px 0 0 0 !important;
+}
+
+.sform dd {
+  display: block !important;
+  padding: 0 0 5px 0 !important;
+  border-bottom: 1px dotted #C6F4F6 !important;
+}
+
+.sform p {
+  margin: 0;
+  padding: 3px 0 0 0 !important;
+}
+/*
+ *=ARTICLES
+ */
+
+#articles { margin-top: 20px;}
+
+#article-list {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+#article-list th {
+  border-bottom: 4px solid #ccc;
+  text-align: left;
+}
+
+#article-list td {
+  padding: 8px 10px;
+  border-bottom: 1px dotted #ccc;
+}
+
+#article-list a {
+  padding: 2px 0;
+  text-decoration: none;
+  border: none;
+}
+
+#article-list .date {
+  font-size: 80%;
+  font-style: italic;
+}
+
+#cached-pages div.pages { float:right; margin-right:1em; }
+#cached-pages div.pages a { text-decoration:underline; }
+
+#cached-pages { margin-top: 20px;}
+
+#cached-pages {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+#cached-pages th {
+  border-bottom: 4px solid #ccc;
+  text-align: left;
+}
+
+#cached-pages tr.odd {
+  background:#fff;
+}
+
+#cached-pages tr.even {
+  background:#e7e7e7;
+}
+
+#cached-pages tr.deleted td {
+  color:#aaa;
+  text-decoration: line-through;
+}
+
+#cached-pages td {
+  padding: 8px 10px;
+  border-bottom: 1px dotted #ccc;
+}
+
+#cached-pages a {
+  padding: 2px 0;
+  text-decoration: none;
+  border: none;
+}
+
+#cached-pages .date {
+  font-size: 80%;
+  font-style: italic;
+}
+
+#invite {
+  background: url(/images/mephisto/icons/review.gif) 0 50% no-repeat;
+  padding: 5px 5px 5px 20px;
+  border: none;
+}
+
+#invite:hover {
+  color: #000;
+}
+
+.focused {
+  padding: 20px 20px 20px 55px !important;
+  padding-bottom: 3px;
+  border: 1px solid #6aa;
+  background-color: #D6F0F0 !important;
+  margin: 20px 0;
+}
+
+
+.ccount a {
+  color: #478;
+}
+
+.ccount a:hover {
+  color: #000;
+}
+
+/*
+ *=LIVE PREVIEW
+ */
+
+#sbar-handle {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 5px;
+  background: #333;
+  height: 100%;
+}
+
+#live-preview {
+  padding: 10px;
+}
+
+#live-preview h2 {
+  font: 330% "Times New Roman";
+}
+
+
+/*
+ *=CORNERS
+ */
+
+.round:before {
+  background: transparent url(/images/mephisto/corners/tr.png) scroll no-repeat top right;
+  margin-bottom: -20px;
+  height: 30px;
+  display: block;
+  border: none;
+  content: url(/images/mephisto/corners/tl.png);
+  padding: 0;
+  line-height: 0.1em;
+  font-size: 1px;
+}
+
+
+.round:after {
+  display: block;
+  line-height: 0.1;
+  font-size: 1px;
+  content:  url(/images/mephisto/corners/bl.png);
+  margin: 0 0 -1px 0;
+  height: 8px;
+  background: white;
+  background: transparent url(/images/mephisto/corners/br.png) scroll no-repeat bottom right ;
+  padding: 0;
+}
+
+/* Black backgrounds */
+.bround:before {
+  background: transparent url(/images/mephisto/corners/btr.png) scroll no-repeat top right;
+  margin-bottom: -20px;
+  height: 30px;
+  display: block;
+  border: none;
+  content: url(/images/mephisto/corners/btl.png);
+  padding: 0;
+  line-height: 0.1em;
+  font-size: 1px;
+}
+
+
+.bround:after {
+  display: block;
+  line-height: 0.1;
+  font-size: 1px;
+  content:  url(/images/mephisto/corners/bbl.png);
+  margin: 0 0 -1px 0;
+  height: 8px;
+  background: white;
+  background: transparent url(/images/mephisto/corners/bbr.png) scroll no-repeat bottom right ;
+  padding: 0;
+}
+
+
+/*
+ *=RIGHT
+ */
+
+
+
+/*
+ *=ARTICLE
+ */
+
+#add-cat input[type="text"] {
+  width: 190px;
+}
+
+#add-cat {
+  width: 293px;
+  margin-top: 1px;
+}
+
+#section-options li {
+  float: left;
+  width: 25%;
+}
+
+
+/*
+ *=SETTINGS
+ */
+
+.setgroup {
+  padding: 10px;
+  margin: 5px 0;
+}
+
+.setform {
+  background: #eee;
+  padding: 10px;
+  margin: 0;
+}
+
+#cats ul {
+  list-style-type: square;
+  margin: 0 0 0 20px;
+}
+
+/*
+ *=USERS
+ */
+
+#users, #disabled_users {
+  list-style: none;
+  margin-top: 20px;
+  text-shadow: 2px 2px #fff;
+}
+
+#users li, #disabled_users li {
+  background: #eee;
+  margin: 0 0 10px 0;
+  padding: 5px;
+}
+
+#users li .avatar,
+#disabled_users li .avatar {
+  float: left;
+  margin-right: 10px;
+  max-height: 50px;
+  max-width: 50px;
+}
+
+dd.avatar {
+  margin: 8px 2px 5px 0;
+  float: left;
+}
+
+img.avatar {
+  padding: 3px;
+  background: #fff;
+  border: 1px solid #ccc;
+  max-width: 50px;
+  max-height: 50px;
+}
+
+
+/*
+ *=OVERVIEW
+ */
+
+#quick-stats {
+  margin: 20px 0;
+  padding: 0;
+  list-style: none;
+}
+
+#quick-stats li {
+  float: left;
+  margin-right: 10px;
+  color: #fff;
+}
+
+#quick-stats li div {
+  height: 70px;
+  text-align: center;
+  vertical-align: middle;
+  width: 75px;
+  padding: 10px;
+  font-size: 200%;
+  font-weight: bold;
+}
+
+#disabled_users .avatar,
+#activity .avatar {
+  max-width: 30px;
+  max-height: 30px;
+}
+
+#disabled_users li,
+#activity li {
+  min-height: 40px;
+  line-height: 125%;
+}
+
+#stat-comments {
+  background: #c30;
+}
+
+#overview {
+  margin: 40px 0 0 0;
+}
+
+#overview h3 {
+  margin-bottom: 20px;
+  font-size: 100%;
+}
+
+.events, .pagelist {
+  margin: 0 0 30px 0;
+  padding: 0;
+  list-style: none;
+  width: 100%;
+}
+
+.events li, .pagelist li {
+  padding: 5px 10px 10px 50px;
+  line-height: 160%;
+}
+
+.events li a, .pagelist li a { border: 0; }
+
+.events li a:hover, .pagelist li a:hover {
+  color: #d30;
+  background: #f7f7f7;
+}
+
+#overview h4 {
+  margin: 0 0 5px 0;
+  border-bottom: 1px dotted #bbb;
+  padding: 0;
+  font-size: 90%;
+  font-family: Helvetica, Arial, sans-serif;
+  color: #033;
+}
+
+li.event-date {
+  border: 0;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+li.event-revision, li.event-comment,
+li.event-article, .event-none {
+  background-repeat: no-repeat;
+  background-position: 2% 50%;
+}
+
+li.event-revision { background-image: url(/images/mephisto/icons/article-edit.gif); }
+li.event-comment  { background-image: url(/images/mephisto/icons/commentb.gif); }
+li.event-article  { background-image: url(/images/mephisto/icons/articleb.gif); }
+.event-none     { background-image: url(/images/mephisto/icons/minusb.gif); }
+
+.shade { background-color: #eee; }
+
+.events li blockquote {
+}
+
+.events li blockquote p {
+  margin: 0 !important;
+  padding: 0 !important;
+  color: #444;
+  font: italic 100% "Times New Roman", serif;
+}
+
+.events textarea {
+  width: 100%;
+}
+
+.events .meta,  .pagelist .meta {
+  display: block;
+  font-size: 90%;
+}
+
+
+.events .event-time {
+  float: right;
+  font-size: 90%;
+}
+
+.response {
+  margin: 5px 0 20px 20px;
+  border-left: 7px solid #333;
+  padding: 5px;
+}
+
+.response blockquote {
+  padding: 20px;
+}
+
+.response blockquote p {
+  font-family: "Times New Roman", serif;
+  font-size: 110% !important;
+  margin-bottom: 10px;
+  color: #000;
+}
+
+.response p.btns {
+  margin: 0;
+  background: #eee;
+}
+
+.commentlist li {
+  position: relative;
+  padding: 20px;
+  padding-left: 70px;
+}
+
+.commentlist blockquote p {
+  font-family: "Lucida Grande", Helvetica, Arial, sans-serif !important;
+  line-height: 150%;
+}
+
+.commentlist input[type='checkbox'] {
+  position: absolute;
+  left: 3px;
+  top: 40%;
+  padding: 0;
+}
+
+.commentlist .event-comment {
+  background-position: 30px 50%;
+}
+
+/*
+ *=PAGINATION
+ */
+
+#pagination, #top-pagination {
+  background: #eee;
+  margin: 20px 0;
+  text-align: center;
+  border-top: 1px solid #ccc;
+  padding: 10px 0;
+  font-weight:bold;
+}
+
+#main p.total {
+  margin:-0.3em 0 1.2em 0;
+  padding: 0.3em 3em;
+  background: #eee;
+  text-align:center;
+}
+
+
+/*
+ *=FILTER
+ */
+
+#filter {
+  background: url(/images/mephisto/search-bg.gif) repeat-x;
+  border-bottom: 1px solid #81aec4;
+  padding: 0;
+  line-height: 100%;
+  margin-top: -20px;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+#filter ul {
+  list-style: none;
+  margin: 0;
+  padding: 7px 5px;
+}
+
+#filter ul li {
+  list-style: none;
+  padding: 0;
+  float: left;
+}
+
+#filter ul li a {
+  float: left;
+  display: block;
+  border: none;
+  text-decoration: none;
+  padding: 4px 8px 5px 0;
+  margin: 0 6px 0 9px;
+  color: #333;
+  text-shadow: 2px 2px #fff;
+  font-weight: bold;
+}
+
+#filter li a:hover, #filter li:hover a {
+  color: #fff;
+  text-shadow: 2px 2px #578;
+  background: transparent url(/images/mephisto/attribute-bg.gif) 100% 50%  no-repeat;
+}
+
+#filter li:hover {
+  background: transparent url(/images/mephisto/attribute-bg-left.gif) 0 50%  no-repeat;
+}
+
+#filter li.pressed a {
+  outline: none;
+  color: #fff;
+  text-shadow: 2px 2px #578;
+  background: transparent url(/images/mephisto/attribute-pressed.gif) 100% 50%  no-repeat !important;
+}
+
+#filter li.pressed  {
+  background: transparent url(/images/mephisto/attribute-pressed-left.gif) 0 50%  no-repeat !important;
+}
+
+#filter ul#attributes {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+#filter li.sep {
+  border-right: 1px solid #578;
+}
+
+#filesearch {
+  border: 1px solid #BCD;
+  border-bottom: 1px solid #fff;
+  border-right: 1px solid #fff;
+}
+
+.manual {
+  background: url(/images/mephisto/manual-filter-bg.gif) repeat-x !important;
+  border-bottom: 1px solid #AA9 !important;
+  color: #332;
+}
+
+.manual #attributes li {
+  line-height: 200%;
+  font-weight: bold;
+  margin-right: 5px;
+  text-shadow: 2px 2px #fff;
+}
+
+.manual #attributes li:hover {
+  background: transparent;
+}
+
+#manualsearch, .manual select {
+  border: 1px solid #AA9;
+  border-bottom: 1px solid #fff;
+  border-right: 1px solid #fff;
+}
+
+
+/*
+ *=ASSET MANAGEMENT
+ */
+
+#assets, #files, ul.asset-list {
+  list-style: none;
+  margin-top: 5px;
+}
+
+#assets li, #files li, ul.asset-list li {
+  display: inline;
+  white-space: no-wrap;
+  margin-left: 5px;
+  margin-bottom: 5px;
+}
+
+#attached-assets li {
+  display:block;
+}
+
+#attached-assets li div {
+  position:relative;
+}
+
+#attached-assets li div a {
+  display:inline;
+}
+
+#attached-assets div input.txt {
+  width:125px;
+}
+
+#attached-assets div span {
+  position:absolute;
+  top:20px;  right:8px;
+}
+
+ul.asset-list .widget {
+  position:relative;
+}
+
+.widget .attach-widget {
+  z-index:500;
+  position:absolute;
+  top:-13px; left:-23px;
+}
+
+.widget .detach-widget {
+  z-index:500;
+  position:absolute;
+  top:-36px; left:-23px;
+}
+
+#attached-assets .widget .attach-widget {
+  position:absolute;
+  top:11px; left:-23px;
+}
+
+#attached-assets .widget .detach-widget {
+  position:absolute;
+  top:34px; left:-23px;
+}
+
+#assets        li a img,
+#latest-assets li a img,
+#bucket-assets li a img,
+#search-assets li a img,
+ul.asset-list  li a img {
+  padding: 4px;
+  background: #fff;
+}
+
+ul.asset-list img {
+  max-height: 50px;
+  max-width: 50px;
+  padding: 3px;
+  background: #fff;
+  border: 1px solid #8BCACD;
+}
+
+ul.asset-list .selected-widget img {
+  border-color:#000;
+}
+
+#assets span,
+#latest-assets span,
+#bucket-assets span,
+#search-assets span {
+  display: block;
+  font-size: 80%;
+}
+
+#spin {
+  width:  20px; display:  block !important;
+}
+
+#filelbls {
+  position: relative;
+}
+
+#taglbl {
+  position: absolute;
+  left: 275px;
+  top: 2px;
+}
+
+ul#filefields li {
+  border-top: 1px dotted #ccc;
+  padding: 5px;
+  list-style: none;
+}
+
+ul#filefields .remove-file {
+  border: none !important;
+}
+
+ul#filefields img {
+  margin-top: -4px;
+}
+
+#filefields input[type=file] {
+  width: 250px;
+}
+
+#filefields input[type=text] {
+  font-style: italic;
+  color: #777;
+  margin-left: 20px;
+  width: 200px;
+}
+
+.tagsall {
+  margin-left: 10px;
+}
+
+/*
+ *=FIES
+ */
+
+#files, #recentfiles {
+  width: 100%;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+#files td, #recentfiles td {
+  padding: 10px;
+  vertical-align: top;
+  position:  relative;
+}
+
+#recentfiles img, #files img {
+  background: #fff;
+  padding: 5px;
+  border: 1px solid #ccc;
+}
+
+#filelist #recentfiles span {
+  font-size: 80%;
+  color: #555;
+  font-style: italic;
+  display: block;
+  text-align: center;
+}
+
+#recentfiles h4, #filelist h4 {
+  font-size: 90%;
+}
+
+.file-tools {
+  list-style: none;
+  width: 60px;
+  margin: 0 auto 5px auto;
+}
+
+.file-tools li {
+  display: inline;
+  position:  relative;
+}
+
+.file-tools li a {
+  display: block;
+  height: 8px;
+  width: 10px;
+  text-indent: -9999px;
+  float: left;
+  text-decoration: none;
+  border: none;
+  padding: 2px 2px 5px 2px;
+  background-repeat: no-repeat;
+  background-color: #f7f7f7;
+  margin-right: 5px;
+}
+
+.file-tools li a:hover {
+  background-color: #eee;
+}
+
+.file-tools li.fedit a   { background-image: url(/images/mephisto/icons/8-em-pencil.png) }
+.file-tools li.fview a   { background-image: url(/images/mephisto/icons/8-em-plus.png)   }
+.file-tools li.fbucket a { background-image: url(/images/mephisto/icons/8-em-check.png)  }
+.file-tools li.fdelete a { background-image: url(/images/mephisto/icons/8-em-cross.png)  }
+.pdf { width:  100px; height:  100px;}
+.fspin img { position: absolute; left: 40%; top: 40%;}
+
+
+/*------------------------------------------------------------------------
+ *=THEMES
+ ------------------------------------------------------------------------*/
+#themelist {
+  list-style: none;
+}
+
+#themelist li {
+  display: block;
+  float: left;
+  width: 30%;
+  position: relative;
+}
+
+#themelist ul li {
+  float: none;
+}
+
+.theme {
+  margin-bottom: 20px;
+  text-align: center;
+  padding: 5px 5px 20px 5px;
+  border-bottom: 1px dotted #ccc;
+}
+
+#themelist img,
+#screenshot img {
+  width: 125px;
+  height: 125px;
+  background: #fff;
+  padding: 3px;
+  border: 4px solid #aaa;
+}
+
+.thememeta {
+  display: block;
+  font-weight: normal;
+  font-size: 90%;
+  color: #777;
+}
+
+#themelist .tools {
+  position: absolute;
+  bottom: -100px;
+  left: 30%;
+  text-align: left;
+  z-index: 9999;
+  padding: 0 3px 3px 0;
+  width: 150px;
+  background: url(/images/mephisto/shadow.png) bottom right no-repeat;
+}
+
+#themelist .tools ul {
+  border: 4px solid #fff;
+  background: #eee;
+}
+
+#themelist .tools a {
+  display: block;
+  border-bottom: 1px solid #fff;
+  padding: 5px;
+  width: 130px;
+  color: #555;
+}
+
+#themelist .tools a:hover {
+  color: #333;
+}
+
+#inuse img {
+  background: #eff;
+  border: 4px solid #7bb;
+}
+
+li.current img {
+  border: 4px solid #6FB4B6 !important;
+}
+
+#theme-info {
+  text-align: left;
+}
+
+#theme-info h3 {
+  background: url(/images/mephisto/actnav-bg.gif) repeat-x;
+  margin: 0 0 20px 0;
+  color: #005d60;
+  border-bottom: 1px solid #6fb4b6;
+  padding: 10px 5px;
+  font-size: 100%;
+  position: relative;
+}
+
+#theme-info h3 a {
+  color: #000;
+  border: none;
+}
+
+#screenshot {
+  float: left;
+  width: 300px;
+  padding: 0 10px;
+}
+
+#screenshot p {
+  margin: 10px;
+  color: #777;
+}
+
+#theme-options {
+  margin-left: 300px;
+}
+
+#dialog {
+  background-color: #000;
+  opacity: 0.15;
+  filter:alpha(opacity=15);
+}
+
+#dialog-box {
+  width: 500px;
+  background: #eee;
+  border: 5px solid #fff;
+}
+
+#dialog-box ul {
+  float: right;
+  list-style: none;
+  width: 150px;
+  text-align: left;
+}
+
+#dialog-box ul li a {
+  display: block;
+  border-bottom: 1px dotted #ccc;
+  padding: 5px;
+}
+
+#close-dialog {
+ position: absolute;
+ right: 0;
+ top: 0;
+ padding: 10px 5px;
+ border-left: 1px solid #6fb4b6 !important;
+ font-weight: normal;
+ color: #005d60;
+}
+
+#close-dialog:hover {
+  background: transparent;
+}
+
+/*------------------------------------------------------------------------
+ *=MISC
+ ------------------------------------------------------------------------*/
+
+
+cite {
+  font-style: normal;
+}
+
+cite a {
+  color: #277 !important;
+}
+
+a.adds { color: #017CA2;}
+
+h3.withcontrol {
+  border-bottom: 2px solid #999;
+  margin-bottom: 10px;
+  padding: 5px 0;
+  text-align: right;
+}
+
+.divider {
+  margin: 0 0 5px 0;
+  border-bottom: 5px double #bbb;
+  padding: 0;
+  font-size: 90%;
+  font-family: Helvetica, Arial, sans-serif;
+  color: #033;
+}
+
+.feed {
+  background: url(/images/mephisto/icons/feed-icon-12x12.gif) 0 50% no-repeat;
+  padding-left: 16px;
+  border: none !important;
+  color: #f60;
+}
+
+.feed:hover { color: #000; }
+
+.searchbox {
+  background: #fff url(/images/mephisto/icons/magnify.png) 5px 50% no-repeat;
+}
+
+.right { float: right; }
+
+.sb { margin-bottom: 10px !important; }
+.st { margin-top: 20px !important; }
+.pad { padding: 5px;}
+
+.bbox {
+  margin: 5px 0;
+  background: #9cf;
+  padding: 10px;
+  border: 1px solid #69c;
+}
+
+.group {
+  background: #f3f3f3;
+  border-top: 4px solid #ccc;
+  padding: 10px;
+  margin: 20px 0;
+}
+
+.hint { 
+  color: #555; 
+  font-size: 90%;
+}
+
+p.hint {
+  padding: 0;
+  margin: 0;
+  line-height: 130%;
+}
+
+ul.nobull {
+  list-style: none;
+}
+
+ul.nobull li {
+  padding: 3px 0;
+}
+
+ul.nobull li label {
+  font-weight: normal;
+}
+
+.indent-box {
+  margin-left: 20px;
+  border-left: 5px solid #ccc;
+  padding: 10px;
+  background: #eee;
+}
+
+.small-col {
+  width: 25px;
+  text-indent: -99999px;
+}
+
+.bottom-tab {
+  display: block;
+  border: none !important;
+  border-top: 1px solid #ccc !important;
+  background: #ddd;
+  padding: 5px;
+  text-decoration: none;
+  margin-top: -21px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.bottom-tab:hover {
+  background-color: #eee;
+}
+
+/*
+ *=ERRORS AND NOTICES
+ */
+
+#flash-errors, #errorExplanation {
+  margin: 0 auto;
+  background: #F69A91;
+  padding: 10px;
+  color: #510;
+  text-align: center;
+}
+
+#flash-notice {
+  background: #cfc;
+  padding: 10px;
+  color: #051;
+  text-align: center;
+}
+
+#errorExplanation ul, 
+#flash-notice ul, 
+#flash-errors ul,
+#flash-notice li,
+#flash-errors li {
+  list-style: none;
+}
+
+#errorExplanation {
+  text-align: left;
+  border: 1px solid #F99;
+  background: #fdd;
+}
+
+#errorExplanation h2 {
+  border: none;
+  margin: 0;
+  padding: 0;
+}
+
+
+
+/*
+ *=ICONS
+ */
+
+.icon { background: url(/images/mephisto/icons/bg_rounded.gif);}
+.iconb { background: url(/images/mephisto/icons/bg_roundedb.gif); vertical-align: middle;}
+
+
+.green { background-color: #9c0;} 
+.yellow { background-color: #fc3;}
+.black { background-color: #000;} 
+.orange { background-color: #f63;}
+.red { background-color: #f33;}
+
+

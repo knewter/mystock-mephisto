@@ -1,0 +1,28 @@
+<div class="setgroup">
+  <dl class="setform clear">
+    <dt><label for="user_login">Login</label></dt>
+    <dd><%= f.text_field :login %></dd>
+    <dt><label for="user_filter">What markup type do you prefer?</label></dt>
+    <dd>
+      <select name="user[filter]" id="user_filter">
+        <%= options_for_select(filter_options, @user.filter) %>
+      </select>
+    </dd>
+    <dt><label for="user_email">Email address</label></dt>
+    <dd><%= f.text_field :email %></dd>
+  </dl>
+</div>
+
+<div class="setgroup">
+  <% unless create %>
+  <h3>Change your password</h3>
+  <p class="hint">Leave this blank if you don't want to change your password.</p>
+  <% end %>
+  <dl class="setform">
+    <dt><%= f.label_for      :password %></dt>
+    <dd><%= f.password_field :password %></dd>
+    <dt><%= f.label_for      :password_confirmation %></dt>
+    <dd><%= f.password_field :password_confirmation %></dd>
+  </dl>
+</div>
+<p class="btns"><%= submit_tag(@user.new_record? ? 'Add new user' : 'Save my profile') %></p>

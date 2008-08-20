@@ -1,0 +1,10 @@
+<li id="<%= section.dom_id %>">
+  <span class="iconb orange handle">&nbsp;</span>
+  <%= link_to_remote image_tag('/images/mephisto/icons/trash.gif', :class => 'iconb red trash'), {
+        :url     => { :controller => 'sections', :action => 'destroy', :id => section }, 
+        :confirm => "Are you sure?"}, 
+        :class   => 'aicon' unless section.home? %>
+    
+  <%= link_to h(section.name), {:action => 'edit', :id => section}, :id => "section-#{section.name}" %>
+  <span class="hint">(<%= pluralize_articles_count_for section %><% if section.home? -%>, not deletable<% end -%>)</span>
+</li>

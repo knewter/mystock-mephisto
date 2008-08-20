@@ -1,0 +1,58 @@
+<%= render :partial => "action_nav" %>
+
+<% content_for :action_nav do -%>
+<% form_tag(assets_url,:id => 'filesearchform', :method => 'get') do -%>
+  <div id="filter">
+    <ul class="clear" id="type">
+      <li id="spin"><img style="display:none;" src="/images/mephisto/spinner.gif" alt="spinner" id="spinner" />&nbsp;</li>
+      <li id="faudio"><a href="#" title="Audio">Audio</a></li>
+      <li id="fmovies"><a href="#" title="Movies">Movies</a></li>
+      <li id="fpictures"><a href="#" title="Test">Pictures</a></li>
+      <li id="fothers" class="sep"><a href="#" title="Others">Others</a></li>
+    </ul>
+    <ul id="attributes">
+      <li id="ctags"><a href="#" title="Tags">Tags</a></li>
+      <li id="ctitle"><a href="#" title="Title">Title</a></li>
+      <!--li id="cdate"><a href="#" title="Date">Date</a></li-->
+      <li><input type="text" name="q" id="filesearch" /></li>
+    </ul>
+    <div id="filter-options" style="display:none">
+      <%= hidden_field_tag 'page', '1' %>
+      <%= check_box_tag 'filter[audio]',  '1', false, :id => 'faudio-check' %>
+      <%= check_box_tag 'filter[image]',  '1', false, :id => 'fpictures-check' %>
+      <%= check_box_tag 'filter[other]',  '1', false, :id => 'fothers-check' %>
+      <%= check_box_tag 'filter[movie]',  '1', false, :id => 'fmovies-check'%>
+      
+      <%= check_box_tag 'conditions[tags]',  '1', false, :id => 'ctags-check' %>
+      <%= check_box_tag 'conditions[title]', '1', false, :id => 'ctitle-check' %>
+      <%= check_box_tag 'conditions[date]',  '1', false, :id => 'cdate-check' %>
+    </div>
+  </div>
+<% end -%>
+<% end -%>
+
+<div id="filelist">
+<%= render :partial => "assets" %>
+</div>
+
+
+<% content_for :sidebar do %>
+  <div class="sgroup">
+    <h3>Your bucket <%= link_to_remote '(clear)', :url => clear_bucket_assets_path %></h3>
+    <p>Add files to your bucket temporarily in order to carry them with you when creating or revising articles.</p>
+    <ul id="assets">
+      <% session[:bucket].each do |filename, values| -%>
+      <li>
+        <%= image_tag(*values) %>
+      </li>
+      <% end unless session[:bucket].blank? %>
+    </ul>
+  </div>
+  <div class="sgroup">
+    <h3>Some stats</h3>
+    <p>
+      You have a uploaded a total of <strong><%= pluralize site.assets.count, 'asset'%></strong>, using
+      <strong><%= number_to_human_size site.assets.sum(:size) %></strong>.
+    </p>
+  </div>
+<% end %>

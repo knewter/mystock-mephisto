@@ -1,0 +1,112 @@
+<% content_for :action_nav do %>
+<!-- begin action nav -->
+<div id="page-nav">
+  <ul id="act-nav" class="clear">
+    <li><%= link_to "General", '#general' %></li>
+    <li><%= link_to "Spam Prevention", '#spam' %></li>
+    <li><%= link_to "Comments", '#spam' %></li>
+    <li><%= link_to "Publishing", '#publish' %></li>
+    <% if ActionController::Base.perform_caching -%>
+    <li><%= link_to 'Caches', :controller => '/admin/cached_pages' %></li>
+    <% end -%>
+  </ul>
+</div>
+<!-- /end action nav -->
+<% end %>
+
+
+<% form_for :site, :url => { :action => "update" } do |f| %>
+<div id="general" class="setgroup">
+  <h3>General site settings</h3>
+  <dl class="setform">
+    <dt><label for="site_title">Website title</label></dt>
+    <dd><%= f.text_field :title %></dd>
+    <dt><label for="site_subtitle">Website subtitle</label></dt>
+    <dd><%= f.text_field :subtitle %></dd>
+    <dt>
+      <label for="site_email">Administrator email</label>
+      <span class="hint">Shown in emails sent from your site</span>
+    </dt>
+    <dd><%= f.text_field :email %></dd>
+    <dt><label for="site_timezone">Website Timezone</label></dt>
+    <dd><%= select_tag 'site_timezone', options_for_select(['UTC'] + TZInfo::Timezone.all.map{|tz| [tz.to_s, tz.name]}.sort, @site.timezone.name), :name => 'site[timezone]' %></dd>
+    <dt>
+      <label for="site_lang">Site language</label>
+      <span class="hint">Used to specify language in your site feeds</span>
+    </dt>
+    <dd><%= f.text_field :lang %></dd>
+    <dt>
+      <label for="site_current_theme_path">Current Theme Path</label>
+      <span class="hint">This is the path to the current template in /themes/site-<%= site.id %>.  Be careful with this setting!</span>
+    </dt>
+    <dd>
+      <%= f.text_field :current_theme_path %>
+    <% unless site.theme.name == site.current_theme_path -%>
+      <strong>This setting is incorrect, set it to a valid theme path.</strong>
+    <% end -%>
+    </dd>
+  </dl>
+</div>
+
+<div id="spam" class="setgroup">
+  <h3>Spam prevention</h3>
+  <p>At the moment Mephisto uses <%= link_to 'Akismet', 'http://akismet.com' %> to automatically handle spam.  If you leave out the Akismet settings, you can moderate new comments from the Overview.</p>
+  <dl class="setform">
+    <dt><label>Akismet API Key</label></dt> 
+    <dd><%= f.text_field :akismet_key %></dd>
+    <dt><label>Blog url</label></dt> 
+    <dd><%= f.text_field :akismet_url %></dd>
+    <dt><label for="site_comment_age">Comments</label></dt>
+    <dd><%= f.select :comment_age, comment_expiration_options %></dd>
+    <dt>
+      <label><%= f.check_box 'approve_comments' %> Approve and publish all comments automatically.</label>
+    </dt>
+  </dl>
+</div>
+
+<div id="publish" class="setgroup">
+  <h3>Publishing and Reading</h3>
+  <dl class="setform">
+    <dt>
+      <label for="comments_filter">Comments filter</label>
+      <p class="hint">When comments are posted, they use this markup</p>
+    </dt>
+    <dd>
+      <select name="site[filter]">
+        <%= options_for_select(filter_options, site.filter) %>
+      </select>
+    </dd>
+    <dt>
+      <label for="site_articles_per_page">Articles per page</label>
+      <p class="hint">Default article limit for search/tag pages.</p>
+    </dt>
+    <dd><%= f.text_field :articles_per_page, :class => 'tiny' %></dd>
+    <dt>
+      <label for="site_search_path">Search area url</label>
+    </dt>
+    <dd><%= f.text_field :search_path %></dd>
+    <dt>
+      <label for="site_tag_path">Tag area url</label>
+    </dt>
+    <dd><%= f.text_field :tag_path %></dd>
+    <% if @layouts.any? -%>
+    <dt>
+      <label for="site_tag_layout">Tag area layout</label>
+    </dt>
+    <dd>
+      <select name="site[tag_layout]">
+        <%= options_from_templates_for_select(@layouts, @site.tag_layout) %>
+      </select>
+    </dd>
+    <% end -%>
+    <dt>
+      <label for="permalink_style">Article url style</label>
+      <p class="hint">Use the <code>:year</code>, <code>:month</code>, <code>:day</code>, <code>:permalink</code>, and <code>:id</code> in place of actual article values.</p>
+    </dt>
+    <dd><%= f.text_field :permalink_style %></dd>
+  </dl>
+</div>
+
+<p class="btns"><%= submit_tag 'Save and apply settings' %></p>
+<% end %>
+    

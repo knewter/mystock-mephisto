@@ -1,0 +1,21 @@
+<% content_for :action_nav do %>
+  <div id="page-nav">
+    <ul id="act-nav" class="clear">
+      <li><%= link_to "New template", url_for_theme(:controller => 'design') %></li>
+      <li><%= link_to "Manage themes", :controller => 'themes' %></li>
+    </ul>
+  </div>
+<% end %>
+
+<% form_tag url_for_theme(:action => 'create') do -%>
+<%= render :partial => 'form', :locals => { 
+  :attachment => nil, 
+  :title      => 'Create a new template',
+  :hint       => 'You can use HTML and Liquid in your template.',
+  :labels     => { :data     => 'Template source code',
+                   :filename => 'Name of your template' }
+ } %>
+<p class="btns"><%= submit_tag 'Create template' %></p>
+<% end -%>
+
+<%= render :partial => 'sidebar' %>

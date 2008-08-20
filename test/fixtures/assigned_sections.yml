@@ -1,0 +1,68 @@
+# :article_id, :integer
+# :section_id, :integer
+# :position, :integer, :default => 1
+welcome_home:
+  id: 1
+  article_id: 1
+  section_id: 1
+  position: 1
+another_home:
+  id: 2
+  article_id: 2
+  section_id: 1
+  position: 2
+welcome_about:
+  id: 3
+  article_id: 1
+  section_id: 2
+  position: 1
+about_about:
+  id: 4
+  article_id: 6
+  section_id: 2
+  position: 2
+site_map_about:
+  id: 5
+  article_id: 7
+  section_id: 2
+  position: 3
+future_home:
+  id: 6
+  article_id: 5
+  section_id: 1
+  position: 1
+cupcake_welcome_home:
+  id: 7
+  article_id: 8
+  section_id: 3
+  position: 1
+cupcake_welcome_about:
+  id: 8
+  article_id: 8
+  section_id: 4
+  position: 1
+draft_home:
+  id: 9
+  article_id: 11
+  section_id: 1
+  position: 5
+draft_about:
+  id: 10
+  article_id: 11
+  section_id: 2
+  position: 4
+future_about:
+  id: 11
+  article_id: 5
+  section_id: 2
+  position: 5
+paged_section_article_1:
+  id: 12
+  article_id: 16
+  section_id: 10
+  position: 1
+paged_section_article_2:
+  id: 13
+  article_id: 17
+  section_id: 10
+  position: 2

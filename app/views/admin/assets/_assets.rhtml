@@ -1,0 +1,32 @@
+  <% if @recent.any? %>
+  <table id="recentfiles">
+    <tr>
+    <% @recent.each do |asset| -%>
+      <td>
+        <%= render :partial => 'asset', :object => asset, :locals => {:size => :thumb} if asset %>
+      </td>
+    <% end -%>
+    </tr>
+  </table>
+  
+  <% if @assets.any? %>
+  <h3 class="divider">Older files</h3>
+    <table id="files">
+    <% @assets.in_groups_of(5) do |assets_line| -%>
+    <tr>
+      <% assets_line.each do |asset| %>
+       <td>
+         <%= render :partial => 'asset', :object => asset if asset %>
+        </td>
+       <% end %>
+    </tr>
+    <% end %>
+    </table>
+  <% end %>
+  <% else %>
+    <div class="empty" style="margin: 20px;">You have no files of this type or have yet to upload any files. <%= link_to 'Upload one now &raquo;', :action => 'new' %></div>
+  <% end %>
+
+<% if @assets.page_count > 1 %>
+  <%= will_paginate @assets, :id => 'pagination' %>
+<% end %>

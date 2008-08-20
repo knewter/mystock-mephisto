@@ -1,0 +1,73 @@
+<div class="sgroup">
+  <h3>Publish in these sections</h3>
+  <ul class="slist">
+    <% @sections.each do |section| %>
+      <li>
+        <%= check_box_tag 'article[section_ids][]', section.id, @article.has_section?(section), 
+              :id => "article_section_ids_#{section.id}" %>
+        <label for="article_section_ids_<%= section.id %>"><%= section.name %></label>
+      </li>
+    <% end %>
+  </ul>
+</div>
+
+<div class="sgroup" id="filetabs">
+  <ul class="stabs">
+    <li id="tab-latest"><a href="#latest-files" class="selected" title="Latest files uploaded">Latest</a></li>
+    <li id="tab-attached"><a href="#attached-files" title="Attached Assets">Attached</a></li>
+    <li id="tab-search"><a href="#search-files" title="Search for files">Search</a></li>
+    <li id="tab-files"><a href="#upload-files" title="Upload new files">Upload</a></li>
+    <li id="tab-bucket"><a href="#bucket" title="Upload new files">Bucket</a></li>
+  </ul>
+  
+  <div id="tabpanels">
+    <div class="tabpanel" id="latest-files">
+      <ul id="latest-assets" class="asset-list">
+        <%= render :partial => "admin/assets/widget", :collection => @assets, :locals => { :prefix => 'latest' } %>
+      </ul>
+    </div>
+    <div class="tabpanel" id="attached-files" style="display:none;">
+      <ul id="attached-assets" class="asset-list">
+        <%= render :partial => "admin/assets/widget", :collection => @article.assets, :locals => { :prefix => 'attached' } %>
+      </ul>
+    </div>
+    <div class="tabpanel" id="search-files" style="display:none;">
+      <label for="q" style="font-weight:bold;padding: 5px 0;">
+        Search by tag or title 
+        <img id="spinner" src="/images/mephisto/spinner.gif" alt="spinner" style="display:none;vertical-align: middle" />
+      </label>
+      <input class="searchbox" type="text" size="30" name="q" id="search-files-q" />
+      <input type="button" value="Search" onclick="TinyTab.callbacks['search-files']($F('search-files-q'))" />
+      <ul id="search-assets" class="asset-list"></ul>
+    </div>
+    <div class="tabpanel" id="upload-files" style="display:none;">
+      <p>
+        <strong>1.</strong>
+        <%= file_field_tag 'asset[uploaded_data]', :size => 15, :id => 'asset_uploaded_data' %>
+      </p>
+      <p><strong>2.</strong> <input type="button" value="Upload" onclick="Asset.upload('article-form');" /></p>
+    </div>
+    <div class="tabpanel" id="bucket" style="display:none;">
+      <ul id="bucket-assets" class="asset-list">
+        <%= render :partial => "admin/assets/widget", :collection => @bucket_assets, :locals => { :prefix => 'bucket' } %>
+      </ul>
+    </div>
+  </div>
+  
+</div>
+
+<div class="sgroup">
+  <h3>Optional settings</h3>
+  <dl class="sform">
+      <dt><label for="article_filter">Format with: </label></dt>
+      <dd>
+        <select name="article[filter]" id="article_filter">
+        <%= options_for_select(filter_options, @article.filter) %>
+      </select>
+    </dd>
+    <dt><label for="article_comment_age">Comments</label></dt>
+    <dd><%= form.select :comment_age, comment_expiration_options %></dd>
+    <dt><label for="article_permalink">Permanent link:</label></dt>
+    <dd><%= form.text_field :permalink %></dd>
+  </dl>
+</div>

@@ -1,0 +1,51 @@
+<% content_for :sidebar do -%>
+<h3 id="templates-trigger">Templates</h3>
+<p>Modify a template by selecting it from the list below.  Add a new layout by creating a Liquid template with an 
+  *_layout suffix (e.g custom_layout).</p>
+<ul id="attachments">
+  <% @theme.templates.template_types(@theme.extension).each do |template| -%>
+    <li><%= link_to template, url_for_theme(:controller => 'templates', :action => 'edit', :filename => template) %></li>
+  <% end -%>
+  <% @theme.templates.custom(@theme.extension).each_with_index do |template, i| -%>
+    <li id="templates-<%= i %>">
+      <%= delete_link :templates, template, "templates-#{i}" %>
+      <%= link_to template, url_for_theme(:controller => 'templates', :action => 'edit', :filename => template) %>
+    </li>
+  <% end -%>
+  <% @theme.resources.reject { |r| @theme.resources.image?(r) }.each_with_index do |resource, i| -%>
+    <li id="resources-<%= i %>">
+      <%= delete_link :resources, resource.basename.to_s, "resources-#{i}" %>
+      <%= link_to resource.basename, url_for_theme(:controller => 'resources', :action => 'edit', :filename => resource.basename) %>
+    </li>
+  <% end -%>
+</ul>
+
+<h3 style="margin-top:15px;">Images</h3>
+
+<p>Select an image to use in your template.</p>
+<ul id="attachments">
+  <% @theme.resources.select { |r| @theme.resources.image?(r) }.each_with_index do |image, i| -%>
+    <li id="images-<%= i %>"><%= delete_link :resources, image.basename.to_s, "images-#{i}" %> <%=  image.basename %> </li>
+  <% end -%>
+</ul>
+
+
+<div class="sbar-group box">
+  <% form_tag(url_for_theme(:controller => 'resources', :action => 'upload', :filename => nil), { :multipart => true }) do -%>
+  <dl class="sbar-form">
+    <dt>
+      <label for="resource">Upload new image</label>
+      <p class="hint">Upload images to use in your templates</p>
+      <span style="display:none;" id="upload-spinner"><img src="/images/mephisto/icons/spinner-black.gif" /> uploading...</span>
+    </dt>
+    <dd>
+      1. <%= file_field_tag :resource %><br />
+      2. <%= submit_tag 'Upload', :onclick => "Element.show('upload-spinner')" %>
+    </dd>
+  </dl>
+  <% end -%>
+</div>
+
+
+<% end -%>
+

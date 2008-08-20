@@ -1,0 +1,4 @@
+<h3>
+  choose a paged section
+  <%= select_tag 'section', options_for_select([''] + Section.find_paged.collect { |t| t.name }), :onchange => "Navigate.to_paged_section(this)" %>
+</h3>

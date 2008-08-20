@@ -1,0 +1,43 @@
+# "title", :string
+# "subtitle", :string
+# "email", :string
+# "ping_urls", :text
+# "filters", :text
+# "articles_per_page", :integer, :default => 15
+first:
+  id: 1
+  title: Mephisto
+  host: test.host
+  filter: textile_filter
+  approve_comments: false
+  comment_age: 30
+  timezone: America/New_York
+  articles_per_page: 15
+  permalink_style: ":year/:month/:day/:permalink"
+  tag_path: tags
+  search_path: search
+  current_theme_path: current
+hostess:
+  id: 2
+  title: Cupcake
+  subtitle: Your hostess
+  filter: foo
+  host: cupcake.com
+  timezone: UTC
+  approve_comments: false
+  comment_age: 0
+  articles_per_page: 10
+  permalink_style: ":year/:month/:day/:permalink"
+  tag_path: tags
+  search_path: search
+  current_theme_path: current
+garden:
+  id: 3
+  title: walled garden
+  host: garden.com
+  timezone: UTC
+  comment_age: -1
+  permalink_style: ":year/:month/:day/:permalink"
+  tag_path: tags
+  search_path: search
+  current_theme_path: current

@@ -1,0 +1,439 @@
+* SVN *
+
+* Experimental comment preview. [court3nay]
+
+* Add multi-site admin interface. [Vincent, j2m]
+
+* Update Wordpress converter to support Wordpress 2.3+. [Aubrey]
+
+* refactor so that admin/comments is more restful, allow inline comment editing in the admin.  [court3nay]
+
+* convert to cookie sessions.
+
+* Fix some failing test issues and git => svn sync errors. [Aubrey, octopod]
+
+* Fix issue where duplicate permalinks are allowed.
+
+* Fix admin/users issue where site admins could disable mephisto admins.
+
+* Fix nil.accept_comments? bug in CommentForm block.
+
+* allow the various link_to filters to accept multiple args to specify more html attributes. [rob-twf]
+
+  # use this order: :text, :title, :id, :class, :rel
+	link_to_article article, "click here", "this article", "article-1", "articles", "whatever-rel-means"
+
+* encode search/tag urls properly. [rob-twf]
+
+* update article forms to explain new tag syntax (comma and space delimited tags) [xavier, rick]
+
+* start converting tests to rspec.
+
+* tweak mephisto_init to support the new ActionController::Dispatcher class.  [Rob Anderton]
+
+* Don't generate an article event for unversioned changes. [Marcus Brito]
+
+* Switch to will_paginate plugin. [Mislav]
+
+* unit test fixes for those not using mysql or psql. [Mislav]
+
+* add comment moderation links to the overview. [court3nay]
+
+* convert tests to use test/spec instead of simply bdd. [Chris McGrath]
+
+* move xmlrpc stuff to plugin.  rails doesn't include AWS anymore.  May need some simple autodetection so the plugin just prints a warning if AWS isn't found.
+
+* turn off session for mephisto controller.  sorry, caused way too many problems.
+
+* fix url_for calls with symbolized controllers/actions.
+
+* Fix controllers so include_into works with them.
+
+* Change plugin class/module to Mephisto::Plugin and Mephisto::Plugins.  Sorry for the breakage (still technically experimental!).
+
+* Fix admin overview date timezone.  [Ben Wyrosdick]
+
+* Extract template rendering code to separate handler class, add support for alternate template handlers. [Pascal Belloncle]
+
+* Add {{ article.next }} and {{ article | next: section }} for paginating articles [Pascal Belloncle]
+
+* [converters] initial movable type support [sd]
+
+* [converters] use no filter for wordpress articles
+
+* Small bug fixes
+  - show correct asset thumbnail url
+  - assert with correct named asset resource route
+  - add missing fixtures for About Section Feed Test
+  - update asset labeling tests to reflect current behavior
+
+* RESTRICT hyphens as a possible separator for permalink styles. [Chris Wanstrath]
+
+* Initial article/asset assignment support.  Perfect for podcasting.  
+
+* Raise MissingThemesError if Site#theme is nil
+
+* RIP: Site#search_layout
+
+* Add link_to_search_result filter that uses either a paged or blog permalink, depending on the search section.
+
+* Allow search page to take ?s parameter to specify section path.  
+
+  * nil (default)     - all sections
+  * '' (empty string) - home section
+  * 'foo/bar'         - given section
+
+* Initial Plugin Whammy Jammy [Nick Faiz, Rick Olson]
+
+* link_to_section adds class='selected' for the current section [Tammo Freese]
+
+* Process article permalinks with Iconv.
+
+* Support rel-tag microformat by default in liquid filters
+
+* Make ImageScience the default image processor for assets. 
+  If you wish to configure this, set ASSET_IMAGE_PROCESSOR to one of 3 values in environment.rb
+  
+    ASSET_IMAGE_PROCESSOR = :image_science || :rmagick || :none
+
+* paged section feeds will show the paged url for articles instead of the long permalink.
+
+* Replace a couple @article.full_permalink instances with @site.permalink_for(@article) [defunkt]
+
+# Allow Resource#non_image_extnames to be overridden by plugins [myles_b]
+
+* filter password fields in logs [chrissturm]
+
+* add *.ico to list of approved extensions for theme resources [myles_b]
+
+* Link comments to the currently logged in user, requires latest edge/1.2 rails [Josh Susser]
+
+* Convert typo filters and permalinks to mephisto [Josh Susser]
+
+* replace acts_as_attachment with attachment_fu plugin
+
+* add tags to atom feed [evilchelu]
+
+* flexible theme names in routes [evilchelu]
+
+* update liquid plugin
+
+* use default test.host domain where possible [courtenay]
+
+* fix test ensuring that comments, not articles are sanitized for script tags [courtenay]
+
+* fix articles form for latest rails 1.2 changes to date helpers [courtenay]
+
+* fix test that breaks in multi-site mode [courtenay]
+
+* Allow Modules to use #include_into to dynamically mixin to loaded classes (plugin stuff)
+
+* Allow custom routes.
+
+  Mephisto::Routing.connect_with map do
+    map.foo ...
+  end
+
+* fix that only published articles are available as section pages.
+
+Add sorting for liquid for statements.
+
+  {% for page in section.pages limit: 3 sort_by: title %}
+
+* 0.7.3 *
+
+* Fix duplicate tag bug.
+
+* add Mephisto.root javascript variable in case a mephisto site sets the relative_url_root
+
+* don't sanitize custom anchor text for liquid filters [Jonathan Leighton]
+
+* Fix nil authorization header bug.
+
+* fix bug preventing plain html filter
+
+* Fix akismet response issue
+
+* 0.7.2 OFFICIAL *
+
+* Allow safe fallback for bad Site#current_theme_path settings.
+
+* Add another possible key to check for HTTP Basic Authentication
+
+* Add shortcut to disable comments on an article from the comment moderation page.
+
+* 0.7.1 PRE-RELEASE *
+
+* add more robust tagging [Moritz Angermann]
+
+* Fixed duplicate body bug in default Simpla theme when article has no excerpt
+
+* Show excerpt by default on admin edit if the article has one
+
+* big change to templates - store current site template in the Site db record.  Store templates in /themes/site-#{id}/*.  
+  no more current/other/rollback bs.
+
+* recognize swf files in themes
+
+* When moderating comments, article title now links to edit action, magnifying glass links to article on site.
+
+* Improve comment admin workflow by adding the comments awaiting moderation to to single moderation pages.
+
+* Default theme is now Simpla (http://demo.ifelse.co.uk/index.php?wptheme=Simpla)
+
+* Implement movable type xml-rpc API [Moritz Angermann]
+
+* Enhance error recovery in the wordpress converter [Chris Petrilli]
+
+* Fix Site#tags query to return distinct tags [DeLynn Berry]
+
+* Simplify and properly test admin/article permissions for non-admins.
+
+* Change child_section and descendent_section methods in the SiteDrop to search the preloaded sections array.
+
+* Added global mode var to all templates to check what mode you're in: section, single, page, archive, search, tag
+
+* Remove any notion of a template hierarchy, and the page template itself.  Paged sections now default to the 'single' template.
+
+* Added {{ mode }} so you can check what 'view' you're in.  
+  
+  {% unless mode == 'single' %} Read more {% endunless %}
+  
+* Ensure templates are sorted by name [Brian Chapados]
+
+* Fix bug that was caching redirected routes.  
+
+* fix wordpress converter bug, set default email on invalid comments. [Hampton Catlin]
+
+* change time delta so the end date is one second earlier, so a search doesn't include the articles on the next month.  [Jon Leighton]
+
+* use precise time methods when calculating time deltas [Jon Leighton]
+
+* remove .svn dirs when copying default them [Cristi Balan]
+
+* Added linked_tag_list(article, separator).  Use like linked_section_list.
+
+* Enhanced the theme preview slightly
+
+* Changed some wording on moderate comments area 
+
+* Added linked_section_list(article, separator)
+  
+  Pass in an article and it will return that articles sections all linked up.
+  {{ article | linked_section_list }}
+  {{ article | linked_section_list: ' and ' }}
+
+* 0.7.0 PRE-RELEASE *
+
+* Removed archive.liquid and index.liquid fallbacks
+
+* NEW FEATURE: Redirections (see environment.rb)
+
+* Allow drag/drop reordering of sections in a site [Bill Katz]
+
+* Refine child_sections liquid filter, add descendant_sections filter [Cristi Balan]
+
+  {{ 'projects' | child_sections }} # => any sections with a path matching projects/foo, but not projects/foo/bar
+  {{ 'projects' | descendant_sections }} # => any sections starting with /projects/*
+
+* allow macros to ignore extra line breaks after a start tag and before an end tag [Ben Bleything]
+
+* Add XML:Base to atom feeds (thanks Sam Ruby)
+
+* Add comments and changes feeds for articles.
+
+  {{ article | comments_feed }}
+  {{ article | changes_feed: "Latest Changes for this Article" }}
+
+* Cache article-specific fields in comments table, allow simple linking to article:
+
+  {{ comment | link_to_article }}
+  {{ comment.url }}
+
+* Add Liquid Filter helpers for showing comment/article feeds for a section
+
+  {{ section | comments_feed }}
+  {{ section | articles_feed: "Latest Articles for this section" }}
+
+* Add site-specific comment atom feeds and global site comment feeds
+
+  {{ '' | all_comments_feed }}
+  {{ 'comments.xml' | atom_feed }} # comments for home section
+  {{ 'atom.xml' | atom_feed }}     # articles for home section
+  {{ 'projects/foo/comments.xml' | atom_feed: "Project Foo Comments" }} # comments for projects/foo section with optional title
+
+* Add liquid drop/filters for getting the latest comments for a section.
+
+  {{ section | latest_comments: 2 }}
+  {% for comment in section.comments %}
+
+* Implement theme admin functionality, such as import/export/change/remove
+
+* Remove title from file upload form.  You must use the asset interface if you want to change a files title.
+
+* Allow ability to apply a tag group to all files in file upload form.
+
+* Improve multi-file upload interface.
+
+* Adding Theme admin.  Restructure theme paths to include site-specific private themes.
+  /themes/site-#{id}/current - holds current theme
+  /themes/site-#{id}/others/* - private themes
+  
+  The migration should copy your files over.  Rolling back to version 59 will move them back.
+
+* Add {{ section | link_to_month: '2006-9' }} for linking to archive pages.
+
+* Add {{ '2006-1' | parse_date }} for general date parsing
+
+* Fixed issues previewing article drafts
+
+# Added new liquid vars {{ site.latest_articles }} and {{ site.latest_comments }}, 
+  as well as filters like {{ site | latest_articles: 5 }} or {{ site | latest_comments: 5 }}
+
+* move liquid drops/filters to app/drops and app/filters
+
+* add multi-asset uploading capabilities.
+
+* add password resetting ability [Geoff Davis, Rick Olson]
+
+* remove 'pages' and 'comments' variables in page/single template types.  Instead use 'section.pages' and 'article.comments', respectively.
+
+* Find child sections of a section
+
+  {{ 'projects' | child_sections }} # => any sections with a path like projects/*
+
+* Find articles in a section in Liquid
+
+  {{ section | latest_articles }}
+  
+  {{ 'about' | section | latest_article | assign_to: 'bio' }}
+  <div>{{ bio.body }}</div>
+
+* Find section by path in Liquid
+
+  {{ 'about' | section }}
+
+* Support for assigning liquid variables.
+
+  {{ 5 | assign_to: 'age' }} sets age = 5
+  {{ site.tags | assign_to 'tags' }} sets tags = site.tags
+
+* Liquid include tag support [Geoff Davis]
+
+  {% include 'foo' %} includes the '_foo.liquid' template.
+
+* Experimental MetaWeblog Support [Corey Donohue, Patrick Lenz]
+
+* Added 'my' option to format_date for use with archive_date
+
+* Added archive_date liquid tag for archive view
+
+* Change comments so that the text filter is taken from the site, not the article
+
+* Integrate referenced page caching into the app.
+
+* Add Comment validations and better error messages [Geoff Davis]
+
+* Changed published_at_for to use ordinalized string
+
+* Changed published_at_for to use :mdy and :plain
+
+* 0.6.1 *
+
+* Use ActionController::AbstractRequest.relative_url_root for sites under a root path like /blog
+
+* fix odd timezone bug when saving articles
+
+* fix bug with <typo:code> macro
+
+* bad feed urls raise ActiveRecord::RecordNotFound, and return 404 in production
+
+* dont bomb out on comment events without an event body
+
+* fix bug where you're unable to delete an empty comment
+
+* Ignore drafts and articles published in the future when searching.
+
+* sanitize posted comments
+
+* Fix bug where atom feed content from textile was double encoded
+
+* sanitize atom feed content
+
+* 0.6 *
+
+* Change conversion scripts to use Mephisto.convert_from instead:
+
+  Mephisto.convert_from :typo
+
+* Added spinner graphic for asset searches from article page
+
+* Added link to the public homepage
+
+* Added spinner graphics for search request in assets area
+
+* Added icons for video, audio, and other docs
+
+* [CHANGED] Changed {{ article.body }} and added {{ article.content }}
+
+  * {{ article.body }} is now always the article's body, regardless of what template is currently being rendered.
+  * {{ article.content }} tries to be a little smart.  On sections with multiple articles, it shows the excerpt, or the body if the excerpt is missing.
+  Single article templates show the body.
+
+* [NEW] Added {{ article.excerpt }} liquid tag for accessing an articles excerpt.
+
+* Change - Article#body_for_mode only returns the body, not excerpt + body.  This means you'll have to do this in your templates
+if you want to show both:
+
+  {{ article.excerpt }}
+  {{ article.body }}
+
+* Activated Assets with searching and tagging.
+
+* Store filters as a single string field, remove the Serialize hacks.
+
+* Bye bye PageNavigation block.
+
+  Change this:
+
+    {% pagenavigation %}
+      <li>{{ page.link }}</li>
+    {% endpagenavigation %}
+  
+  to:
+
+    {% for page in pages %}
+    <li>{{ page | link_to_page }}</li>
+    {% endfor %}
+
+* Enhance the site host validations so it requires a valid domain name.
+
+* Add basic asset support [Justin, Rick]
+
+* fix user fixtures [Cristi Balan]
+
+* Add windows binary file support to acts as attachment [Cristi Balan]
+
+* escape HTML entered for comment author/url fields [Cristi Balan]
+
+* add category tags to the atom feed [Cristi Balan]
+
+* Port the ReferencedPageCaching controller to the Mephisto admin interface [DeLynn Berry]
+
+* Add extra site and search vars [Rick]
+
+  {{ site.articles_per_page }}
+
+  {{ search_string }}
+  {{ search_count }}
+
+* Identify current section in Liquid [Rick]
+
+  {{ site.current_section }}
+  
+  {% for section in site.sections %}
+    {% if section.current %}
+    {% endif %}
+  {% endfor %}
+
+* Fix issue where Articles don't allow comments with comment_age = 0 [Rick]

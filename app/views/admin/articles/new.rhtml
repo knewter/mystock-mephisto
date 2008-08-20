@@ -1,0 +1,22 @@
+<% content_for :action_nav do -%>
+  <div id="page-nav"></div>
+<% end %>
+
+<% fields_for :article do |f| -%>
+<% content_for :sidebar do %>
+  <%= render :partial => 'shared_options', :locals => { :form => f } %>
+<% end %>
+<% end %>
+
+<% content_for :form do -%>
+  <%= form_tag({:action => 'create'}, {:id => 'article-form', :multipart => true}) %>
+<% end -%>
+
+<% fields_for :article do |f| -%>
+  <%= render :partial => 'form', :object => f %>
+  
+  <p class="btns">
+    <%= submit_tag 'Save Article' %> or 
+    <%= link_to "Cancel", :controller => "articles" %>
+  </p>
+<% end -%>

@@ -1,0 +1,10 @@
+<h1>{{ article.title }} in {{ section.name }}</h1>
+<div class="article">
+  <h2>{{ article.published_at | format_date: 'standard' }}</h2>
+  {{ article.body }}
+</div>
+<ul id="nav">
+{% for page in section.pages %}
+<li>{{ page | link_to_page }}</li>
+{% endfor %}
+</ul>

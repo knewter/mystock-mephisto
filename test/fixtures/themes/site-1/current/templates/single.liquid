@@ -1,0 +1,28 @@
+<div class="article">
+  <h3>{{ article.published_at | format_date: 'standard' }}</h3>
+  <h2>{{ article.title }}</h2>
+  {% if article.excerpt %}<div id="has_excerpt_{{ article.id }}"></div>{% else %}<div id="no_excerpt_{{ article.id }}"></div>{% endif %}
+  <div id="article_excerpt_{{ article.id }}">{{ article.excerpt }}</div>
+  <div id="article_body_{{ article.id }}">{{ article.body }}</div>
+  <div id="article_content_{{ article.id }}">{{ article.content }}</div>
+</div>
+
+<h3>Comments</h3>
+<ul class="comments">
+{% for comment in article.comments %}
+<li id="comment_{{ comment.id }}">
+  <p>{{ comment.body }}</p>
+  <p>by {{ comment.author }} on {{ comment.created_at | format_date: 'short' }}</p>
+</li>
+{% endfor %}
+</ul>
+
+{% commentform %}
+<p>Name: {{ form.name }}</p>
+<p>Email: {{ form.email }}</p>
+<p>Url: {{ form.url }}</p>
+<p>
+  {{ form.body }}<br />
+  {{ form.submit }}
+</p>
+{% endcommentform %}

@@ -1,0 +1,17 @@
+<% content_for :head do -%>
+<%= javascript_include_tag 'mephisto/dialog' %>
+<% end -%>
+
+<% content_for :action_nav do -%>
+  <div id="page-nav">
+    <ul id="act-nav" class="clear">
+      <li><%= link_to "Import new theme", :controller => 'themes', :action => 'import' %></li>
+    </ul>
+  </div>
+<% end -%>
+
+<div id="themes">
+  <ul id="themelist">
+<%= render :partial => "theme", :collection => site.themes %>
+  </ul>
+</div>

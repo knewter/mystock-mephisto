@@ -1,0 +1,96 @@
+# title, :string, :limit => 255
+home:
+  id: 1
+  site_id: 1
+  name: Home
+  path: ''
+  articles_count: 3
+  template: home.liquid
+  archive_path: archives
+  position: 1
+about:
+  id: 2
+  site_id: 1
+  name: About
+  path: about
+  show_paged_articles: true
+  articles_count: 3
+  template: page.liquid
+  archive_path: archives
+  position: 2
+cupcake_home:
+  id: 3
+  site_id: 2
+  name: Home
+  path: ''
+  show_paged_articles: true
+  template: home.liquid
+  articles_count: 1
+  archive_path: archives
+  position: 1
+cupcake_about:
+  id: 4
+  site_id: 2
+  name: About
+  path: about
+  show_paged_articles: true
+  template: page.liquid
+  articles_count: 1
+  archive_path: archives
+  position: 2
+earth:
+  id: 5
+  site_id: 1
+  name: Earth
+  path: earth
+  show_paged_articles: false
+  articles_count: 0
+  archive_path: archives
+  position: 3
+europe:
+  id: 6
+  site_id: 1
+  name: Europe
+  path: earth/europe
+  show_paged_articles: false
+  articles_count: 0
+  archive_path: archives
+  position: 4
+africa:
+  id: 7
+  site_id: 1
+  name: Africa
+  path: earth/africa
+  show_paged_articles: false
+  articles_count: 0
+  archive_path: archives
+  position: 5
+bucharest:
+  id: 8
+  site_id: 1
+  name: Bucharest
+  path: earth/europe/romania/bucharest
+  show_paged_articles: false
+  articles_count: 0
+  archive_path: archives
+  position: 6
+links:
+  id: 9
+  site_id: 1
+  name: Links
+  path: links
+  show_paged_articles: true
+  template: page.liquid
+  articles_count: 0
+  archive_path: archives
+  position: 7
+paged_section:
+  id: 10
+  site_id: 1
+  name: Paged Section
+  path: paged-section
+  show_paged_articles: true
+  template: page.liquid
+  articles_count: 2
+  archive_path: archives
+  position: 8

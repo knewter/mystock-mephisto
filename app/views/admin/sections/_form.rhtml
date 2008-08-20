@@ -1,0 +1,72 @@
+<% form_remote_for :section,
+     :url => { :action => (@section.new_record? ? 'create' : 'update'), :id => @section }, :html => { :id => 'section-form' } do |f| %>
+<div class="group">
+  <dl>
+    <dt><label for="section_name">Section name</label></dt>
+    <dd><%= f.text_field :name, :class => 'big' %></dd>
+    <dt><label for="section_show_paged_articles">Type of section</label></dt>
+    <dd>
+      <select id="section_show_paged_articles" name="section[show_paged_articles]" onchange="SectionForm.toggleSettings();">
+        <%= options_for_select [
+              ['Section with multiple articles (blog)', '0'], 
+              ['Section with multiple pages (one article per page)', '1']], 
+              (@section.show_paged_articles? ? '1' : '0') %>
+      </select>
+    </dd>
+    </dl>
+    <dl id="sec-options" style="display:none">
+    <dt>
+      <label for="section_path">Section path</label> 
+      <p class="hint">
+        Example: If you have a section called Tips & Tricks and you'd like the URL for this section to be <em>domain.com/tips</em>, 
+        you can add 'tips' in this field.
+      </p>
+    </dt>
+    <dd><%= f.text_field :path, :class => 'big' %></dd>
+    <dt>
+      <label for="section_archive_path">Url that the archive area is available at.</label>
+    </dt>
+    <dd><%= f.text_field :archive_path %></dd>
+    
+    <% if @templates.any? -%>
+    <dt><label for="section_template"><%= 'Paged ' if @section.show_paged_articles? %>Section Template</label></dt>
+    <dd>
+      <select name="section[template]">
+        <%= options_from_templates_for_select(@templates, @section.template) %>
+      </select>
+    </dd>
+    <dt><label for="section_archive_template">Section Archive Template</label></dt>
+    <dd>
+      <select name="section[archive_template]">
+        <%= options_from_templates_for_select(@templates, @section.archive_template) %>
+      </select>
+    </dd>
+    <% end -%>
+    <% if @layouts.any? -%>
+    <dt><label for="section_layout">Section layout</label></dt>
+    <dd>
+      <select name="section[layout]">
+        <%= options_from_templates_for_select(@layouts, @section.layout) %>
+      </select>
+    </dd>
+    <% end -%>
+    
+    <!-- begin blog options -->
+    <div id="blog-options"<%= %( style="display:none;") if @section.show_paged_articles? %>>
+      <dt><label for="section_articles_per_page">Articles per page</label></dt>
+      <dd><%= f.text_field :articles_per_page, :class => 'tiny' %></dd>
+    </div>
+    <!-- /end blog options -->
+    
+    <!-- begin paged options (someday we'll get options, i promise)
+    <div id="paged-options"<%= %( style="display:none;") unless @section.show_paged_articles? %>>
+      <dt><label for="section_stuff">Stuff for paged</label></dt>
+      <dd>wee</dd>
+    </div>
+     /end paged options -->
+    
+  </dl>
+</div>
+<a class="bottom-tab" href="#" style="width:200px;" id="sec-options-trigger">Advanced options</a>
+<p class="btns"><%= submit_tag 'Save Section' %></p>
+<% end -%>
